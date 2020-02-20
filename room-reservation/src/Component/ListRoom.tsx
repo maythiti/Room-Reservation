@@ -12,6 +12,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Button, createStyles, Fab } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchRoom } from '../store/room/action'
+
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -45,11 +48,17 @@ const ListRoom: FC = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   function onOpenCreate() {
     console.log("add icon was clicked");
     setAddModalOpen(true);
   }
+
+  useEffect(() => {
+    console.log('useEffect')
+    dispatch(fetchRoom());
+  }, [dispatch])
 
   const room = [
     {
