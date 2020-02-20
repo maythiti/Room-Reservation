@@ -48,9 +48,11 @@ const EditModal: FC = () => {
     const classes = useStyles();
     const [openEditModal, setOpenEditModal] = useState(true)
     const [modalStyle] = useState(getModalStyle);
+    
     function handleClose() {
         setOpenEditModal(false)
     }
+
   return (<div>
     <Modal
         aria-labelledby="simple-modal-title"
