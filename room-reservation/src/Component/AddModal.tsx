@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, createStyles, Fab } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
-import clsx from 'clsx';
+import clsx from "clsx";
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -35,16 +35,17 @@ const useStyles = makeStyles(theme =>
 
 interface AddModalProps {
   isOpen: boolean;
-  onClose: () => void;}
+  onClose: () => void;
+}
 
 const AddModal: FC<AddModalProps> = props => {
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
-  const {isOpen, onClose} = props
+  const { isOpen, onClose } = props;
 
   useEffect(() => {
-      console.log('isOpen >> ', isOpen)
-  })
+    console.log("isOpen >> ", isOpen);
+  });
 
   function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -61,7 +62,7 @@ const AddModal: FC<AddModalProps> = props => {
   }
 
   function onAddRoom() {
-      console.log('dispatch add room service')
+    console.log("dispatch add room service");
   }
 
   return (
@@ -84,13 +85,13 @@ const AddModal: FC<AddModalProps> = props => {
           </div>
           <div></div>
           <Button
-              className={classes.buttonGap}
-              variant="contained"
-              color="primary"
-              onClick={onClose}
-            >
-              CANCEL
-            </Button>
+            className={classes.buttonGap}
+            variant="contained"
+            color="primary"
+            onClick={onClose}
+          >
+            CANCEL
+          </Button>
           <Button
             color="primary"
             variant="contained"

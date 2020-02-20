@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button, createStyles, Fab } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
 import TextField from "@material-ui/core/TextField";
+import clsx from "clsx";
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -23,19 +24,19 @@ const useStyles = makeStyles(theme =>
     },
     buttonGapLeft: {
       marginLeft: "15px"
-    },
-    mainButton: {
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-      position: "fixed"
     }
   })
 );
 
-const DeleteModal: FC = () => {
+interface DeleteModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const DeleteModal: FC<DeleteModalProps> = props => {
+  const { isOpen, onClose } = props;
   const classes = useStyles();
   const [modalStyle] = useState(getModalStyle);
-  const [openDeleteModal, setOpenDeleteModal] = useState(true);
 
   function rand() {
     return Math.round(Math.random() * 20) - 10;
@@ -51,22 +52,29 @@ const DeleteModal: FC = () => {
     };
   }
 
-  function handleClose() {
-    setOpenDeleteModal(false);
-  }
-
   return (
     <div>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-        open={openDeleteModal}
-        onClose={handleClose}
+        open={isOpen}
       >
         <div style={modalStyle} className={classes.paper}>
           <h2 id="simple-modal-title">Confirm to Delete</h2>
           <p id="simple-modal-description">delete room </p>
-          <Button color="primary" variant="contained">
+          <Button
+            className={classes.buttonGap}
+            variant="contained"
+            color="primary"
+            onClick={onClose}
+          >
+            CANCEL
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            className={clsx(classes.buttonGap, classes.buttonGapLeft)}
+          >
             DELETE
           </Button>
         </div>
