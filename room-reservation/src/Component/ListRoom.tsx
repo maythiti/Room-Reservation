@@ -15,18 +15,22 @@ const useStyles = makeStyles(theme =>
     }
   })
 );
+
+
 const ListRoom: FC = () => {
   const classes = useStyles()
+  const [isAddModalOpen, setAddModalOpen] = useState(false)
 
   function onOpenCreate() {
     console.log('add icon was clicked')
+    setAddModalOpen(true)
   }
   return (
     <div>
       Hello React
       <EditModal />
       <DeleteModal />
-      <AddModal />
+      <AddModal isOpen={isAddModalOpen} onClose={() => setAddModalOpen(false)}/>
       <Fab
         className={classes.mainButton}
         color="primary"
